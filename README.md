@@ -8,7 +8,7 @@
 </pre>
 
 <p align="center">
-  <em>Zero-config TypeScript preset для Vue 3 + Vite + vue-tsc — одна строка <code>extends</code>, четырнадцать аудированных <code>compilerOptions</code>.</em>
+  <em>Zero-config TypeScript preset для Vue 3 + Vite + vue-tsc — одна строка <code>extends</code>, двадцать один аудированный <code>compilerOptions</code>.</em>
 </p>
 
 <div align="center">
@@ -69,7 +69,12 @@ pnpm add -D @kkulebaev/tsconfig typescript
 | `jsx` | `preserve` | JSX-трансформацию выполняет Vue SFC compiler |
 | `strict` | `true` | Полный strict mode — `noImplicitAny`, `strictNullChecks` и компания |
 | `noFallthroughCasesInSwitch` | `true` | Предотвращает случайные fallthrough в `switch`-блоках |
-| `noUncheckedIndexedAccess` | `false` | Явно отложен в `./vue-strict` v0.2 (требует grep-аудита перед включением) |
+| `noImplicitOverride` | `true` | Требует `override` keyword при переопределении методов класса |
+| `noUnusedLocals` | `true` | Ошибка на неиспользуемые локальные переменные |
+| `noUnusedParameters` | `true` | Ошибка на неиспользуемые параметры функций (префикс `_` разрешён) |
+| `noUncheckedIndexedAccess` | `false` | Явно выключен — отложен (требует широкого refactor consumer-кода) |
+| `useDefineForClassFields` | `true` | Поля класса инициализируются через `Object.defineProperty` (ES native) |
+| `verbatimModuleSyntax` | `true` | Type-only импорты должны быть явные (`import type { Foo }`) |
 | `esModuleInterop` | `true` | Корректные default-импорты из CommonJS-модулей |
 | `allowSyntheticDefaultImports` | `true` | Идёт в паре с `esModuleInterop` для совместимости на уровне типов |
 | `forceConsistentCasingInFileNames` | `true` | Защищает от cross-OS багов с регистром в импортах |
@@ -97,19 +102,11 @@ pnpm add -D @kkulebaev/tsconfig typescript
 
 Добавление флагов, которые могут создать новые классы ошибок, всегда выходит **minor** релизом и описывается в release notes.
 
-## Roadmap — v0.2
+## Roadmap
 
-Отдельный пресет `./vue-strict`, layered on top of `./vue`. Каждый строгий флаг включается только после явного grep-аудита consumer-кода:
-
-- `verbatimModuleSyntax: true`
-- `noUncheckedIndexedAccess: true`
-- `noUnusedLocals: true`
-- `noUnusedParameters: true`
-- `useDefineForClassFields: true`
-- `noImplicitOverride: true`
-- возможно `exactOptionalPropertyTypes: true`
-
-Дальше планируются `./react`, `./node` — поверх общей базы `./base`.
+- `noUncheckedIndexedAccess: true` — отложен (большой migration cost в consumer-коде).
+- `exactOptionalPropertyTypes: true` — отложен (тонкая семантика, TS team сами не рекомендуют как default).
+- Дополнительные пресеты `./react`, `./node` — поверх общей базы `./base`.
 
 ## License
 
