@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Upgrade npm to OIDC-capable version
+        run: npm install -g npm@latest
+
       - name: Verify tag matches package.json version
         run: |
           TAG="${GITHUB_REF_NAME#v}"
