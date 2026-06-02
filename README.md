@@ -8,7 +8,7 @@
 </pre>
 
 <p align="center">
-  <em>Zero-config TypeScript preset для Vue 3 + Vite + vue-tsc — одна строка <code>extends</code>, двадцать один аудированный <code>compilerOptions</code>.</em>
+  <em>Zero-config TypeScript preset для Vue 3 + Vite + vue-tsc — одна строка <code>extends</code>, двадцать три аудированных <code>compilerOptions</code>.</em>
 </p>
 
 <div align="center">
@@ -69,7 +69,9 @@ pnpm add -D @kkulebaev/tsconfig typescript
 | `jsx` | `preserve` | JSX-трансформацию выполняет Vue SFC compiler |
 | `strict` | `true` | Включает все strict-флаги: `noImplicitAny`, `strictNullChecks`, `strictFunctionTypes`, `strictBindCallApply`, `strictPropertyInitialization`, `noImplicitThis`, `useUnknownInCatchVariables`, `alwaysStrict` |
 | `noFallthroughCasesInSwitch` | `true` | Предотвращает случайные fallthrough в `switch`-блоках |
+| `noImplicitReturns` | `true` | Все ветки функции должны возвращать значение (если есть хотя бы один `return value`). Ловит забытый `return` в `if/else` |
 | `noImplicitOverride` | `true` | Требует `override` keyword при переопределении методов класса |
+| `noErrorTruncation` | `true` | TS не обрезает длинные error-сообщения — облегчает дебаг complex generic-типов |
 | `noUnusedLocals` | `true` | Ошибка на неиспользуемые локальные переменные |
 | `noUnusedParameters` | `true` | Ошибка на неиспользуемые параметры функций (префикс `_` разрешён) |
 | `noUncheckedIndexedAccess` | `false` | Явно выключен — польза от пометки `T \| undefined` при индексном доступе сомнительна относительно количества borrow-чек и `!`-assertion'ов, которые появляются в коде |
