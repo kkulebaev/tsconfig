@@ -1,0 +1,24 @@
+name: validate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    name: validate preset
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Validate vue.json
+        run: node -e "JSON.parse(require('fs').readFileSync('vue.json','utf8'))"
+
+      - name: Check package contents
+        run: npm pack --dry-run
