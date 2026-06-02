@@ -63,20 +63,20 @@ pnpm add -D @kkulebaev/tsconfig typescript
 | Flag | Value | Rationale |
 |------|-------|-----------|
 | `target` | `ES2023` | Современный JavaScript output; покрывает ES2023-методы (например, `Array.prototype.toReversed`) |
-| `module` | `ESNext` | Нативный ESM для bundler'а Vite |
-| `moduleResolution` | `Bundler` | Резолвит импорты так же, как Vite/esbuild (TS 5.0+) |
-| `lib` | `["ES2023","DOM","DOM.Iterable"]` | `DOM.Iterable` даёт типы для итераторов `FormData`/`Headers`/`NodeList` — активно используется в API-слое |
+| `module` | `ESNext` | Native ESM-выхлоп для bundler'а Vite — `import`/`export` без транспайла в CommonJS, поддержка top-level await и динамического `import()` как промиса |
+| `moduleResolution` | `Bundler` | Алгоритм резолва Vite/esbuild — учитывает `package.json` exports/conditions, поддерживает `paths`, не требует обязательных расширений в импортах, без legacy node10 fallback'ов. Требует TS 5.0+ |
+| `lib` | `["ES2023","DOM","DOM.Iterable"]` | `ES2023` — встроенные типы ES2023 (`Array.prototype.toReversed`/`toSorted`/`with`, `Symbol.dispose`, hashbang grammar). `DOM` — браузерные API (`Document`, `Element`, `Window`, `fetch`, `localStorage` и т.д.). `DOM.Iterable` — итераторы DOM-коллекций (`NodeList[Symbol.iterator]`, `FormData.entries()`, `Headers.entries()`, `URLSearchParams.entries()`) |
 | `jsx` | `preserve` | JSX-трансформацию выполняет Vue SFC compiler |
-| `strict` | `true` | Полный strict mode — `noImplicitAny`, `strictNullChecks` и компания |
+| `strict` | `true` | Включает все strict-флаги: `noImplicitAny`, `strictNullChecks`, `strictFunctionTypes`, `strictBindCallApply`, `strictPropertyInitialization`, `noImplicitThis`, `useUnknownInCatchVariables`, `alwaysStrict` |
 | `noFallthroughCasesInSwitch` | `true` | Предотвращает случайные fallthrough в `switch`-блоках |
 | `noImplicitOverride` | `true` | Требует `override` keyword при переопределении методов класса |
 | `noUnusedLocals` | `true` | Ошибка на неиспользуемые локальные переменные |
 | `noUnusedParameters` | `true` | Ошибка на неиспользуемые параметры функций (префикс `_` разрешён) |
-| `noUncheckedIndexedAccess` | `false` | Явно выключен — отложен (требует широкого refactor consumer-кода) |
+| `noUncheckedIndexedAccess` | `false` | Явно выключен — польза от пометки `T \| undefined` при индексном доступе сомнительна относительно количества borrow-чек и `!`-assertion'ов, которые появляются в коде |
 | `useDefineForClassFields` | `true` | Поля класса инициализируются через `Object.defineProperty` (ES native) |
 | `verbatimModuleSyntax` | `true` | Type-only импорты должны быть явные (`import type { Foo }`) |
-| `esModuleInterop` | `true` | Корректные default-импорты из CommonJS-модулей |
-| `allowSyntheticDefaultImports` | `true` | Идёт в паре с `esModuleInterop` для совместимости на уровне типов |
+| `esModuleInterop` | `true` | Runtime-флаг: разрешает default-импорт CommonJS-модулей (`import fs from 'fs'`). Без него потребовался бы `import * as fs from 'fs'`. Меняет emitted JS — добавляет helper для unwrap'а default-экспорта |
+| `allowSyntheticDefaultImports` | `true` | Type-level комплемент `esModuleInterop`: typecheck не блокирует default-импорт модуля без явного `default` export. На runtime не влияет, нужен только для согласия компилятора |
 | `forceConsistentCasingInFileNames` | `true` | Защищает от cross-OS багов с регистром в импортах |
 | `resolveJsonModule` | `true` | Типизированные импорты `.json`-файлов |
 | `isolatedModules` | `true` | Обязательно для single-file transpilation модели Vite (`const enum` несовместим) |
