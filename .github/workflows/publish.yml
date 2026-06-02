@@ -4,6 +4,13 @@ on:
   push:
     tags:
       - 'v*.*.*'
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to publish (e.g. v1.0.0)'
+        required: true
 
 jobs:
   publish:
@@ -14,6 +21,8 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.tag || github.ref }}
 
       - uses: actions/setup-node@v6
         with:
@@ -21,7 +30,8 @@ jobs:
 
       - name: Verify tag matches package.json version
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
+          REF="${{ inputs.tag || github.ref_name }}"
+          TAG="${REF#v}"
           PKG="$(node -p "require('./package.json').version")"
           if [ "$TAG" != "$PKG" ]; then
             echo "::error::tag v$TAG does not match package.json version $PKG"
