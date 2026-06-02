@@ -21,6 +21,7 @@
 </p>
 
 <p>
+  <img alt="stable" src="https://img.shields.io/badge/API-stable-2da44e?style=flat-square">
   <a href="https://docs.npmjs.com/generating-provenance-statements"><img alt="provenance" src="https://img.shields.io/badge/provenance-verified-2da44e?style=flat-square&logo=sigstore&logoColor=white"></a>
   <img alt="tree shaking" src="https://img.shields.io/badge/runtime-zero-blueviolet?style=flat-square">
   <a href="https://vuejs.org/"><img alt="vue3" src="https://img.shields.io/badge/Vue-3-42b883?style=flat-square&logo=vue.js&logoColor=white"></a>
