@@ -1,6 +1,6 @@
 {
   "name": "@kkulebaev/tsconfig",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Shared TypeScript config presets for Vue 3 + Vite + vue-tsc projects",
   "license": "MIT",
   "author": "Konstantin Kulebaev <konstantinkulebaev@gmail.com>",
