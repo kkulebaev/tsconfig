@@ -28,5 +28,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "validate": "node -e \"JSON.parse(require('fs').readFileSync('vue.json','utf8'))\" && npm pack --dry-run",
+    "release:patch": "npm version patch -m \"chore: release %s\" && git push origin main --follow-tags",
+    "release:minor": "npm version minor -m \"chore: release %s\" && git push origin main --follow-tags",
+    "release:major": "npm version major -m \"chore: release %s\" && git push origin main --follow-tags"
   }
 }
