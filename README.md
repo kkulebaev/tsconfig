@@ -1,5 +1,8 @@
 # @kkulebaev/tsconfig
 
+[![npm](https://img.shields.io/npm/v/@kkulebaev/tsconfig.svg)](https://www.npmjs.com/package/@kkulebaev/tsconfig)
+[![publish](https://github.com/kkulebaev/tsconfig/actions/workflows/publish.yml/badge.svg)](https://github.com/kkulebaev/tsconfig/actions/workflows/publish.yml)
+
 Shared TypeScript config presets for Vue 3 + Vite + vue-tsc projects.
 
 ## Install
@@ -78,6 +81,20 @@ Planned additions in a new `./vue-strict` preset (each flag included only after 
 Each flag is included only after an explicit grep-audit and baseline measurement; grep commands and results are published in the release notes.
 
 Additional planned presets: `./react`, `./node` (with a shared `./base` foundation).
+
+## Releasing
+
+CI publishes to npm with [provenance](https://docs.npmjs.com/generating-provenance-statements) via OIDC trusted publishing when a `v*.*.*` tag is pushed:
+
+```sh
+# bump version in package.json, then:
+git tag v0.2.0
+git push --tags
+```
+
+The workflow at `.github/workflows/publish.yml` verifies that the tag matches `package.json` version, validates `vue.json`, and publishes via `npm publish --provenance --access public`.
+
+No npm token is stored in the repository. The npm registry verifies the GitHub Actions workflow identity directly. Configure the trusted publisher once at <https://www.npmjs.com/package/@kkulebaev/tsconfig/access> (Publishing access → Trusted publishers → GitHub Actions, repo `kkulebaev/tsconfig`, workflow `publish.yml`).
 
 ## License
 

@@ -1,1 +1,4 @@
 *.tgz
+.omc/
+.idea/
+node_modules/
