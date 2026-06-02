@@ -95,6 +95,10 @@ pnpm add -D @kkulebaev/tsconfig typescript
 - **Runtime**: `target: ES2023` требует Chrome 110+, Safari 16.4+, Node 20+. Vite может занижать через `build.target` в `vite.config.ts`.
 - **Проекты, эмитящие через `tsc`**: совместимость не гарантируется — требуется явный override `noEmit: false` и пересмотр каждого флага.
 
+## Changelog
+
+См. [CHANGELOG.md](CHANGELOG.md) или [GitHub Releases](https://github.com/kkulebaev/tsconfig/releases) — версии генерируются автоматически через [release-please](https://github.com/googleapis/release-please) на основе [Conventional Commits](https://www.conventionalcommits.org/).
+
 ## License
 
 MIT © [Konstantin Kulebaev](mailto:konstantinkulebaev@gmail.com)
