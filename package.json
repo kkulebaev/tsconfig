@@ -1,0 +1,32 @@
+{
+  "name": "@kkulebaev/tsconfig",
+  "version": "0.1.0",
+  "description": "Shared TypeScript config presets for Vue 3 + Vite + vue-tsc projects",
+  "license": "MIT",
+  "author": "Konstantin Kulebaev <konstantinkulebaev@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kkulebaev/tsconfig"
+  },
+  "keywords": [
+    "tsconfig",
+    "vue",
+    "vite",
+    "vue-tsc"
+  ],
+  "files": [
+    "vue.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./vue": "./vue.json",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
