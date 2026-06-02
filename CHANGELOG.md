@@ -4,6 +4,17 @@
 через [release-please](https://github.com/googleapis/release-please) на основе
 [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.0.0](https://github.com/kkulebaev/tsconfig/compare/v0.3.0...v1.0.0) (2026-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* The current flag set is now considered stable. Future changes follow strict semver — additions that may produce new error classes are minor, removals or semantic changes are major.
+
+### Features
+
+* stabilize v1.0.0 API ([ed41d6a](https://github.com/kkulebaev/tsconfig/commit/ed41d6aac8f04d482c2f11496aa3ad5067987342))
+
 ## [0.3.0](https://github.com/kkulebaev/tsconfig/compare/v0.2.0...v0.3.0) (2026-06-02)
 
 ### Features
