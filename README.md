@@ -93,21 +93,6 @@ pnpm add -D @kkulebaev/tsconfig typescript
 - **Runtime**: `target: ES2023` требует Chrome 110+, Safari 16.4+, Node 20+. Vite может занижать через `build.target` в `vite.config.ts`.
 - **Проекты, эмитящие через `tsc`**: совместимость не гарантируется — потребуется явный override `noEmit: false`. Если эмит делает `tsc`, пересмотри каждый флаг.
 
-## Version pinning
-
-| Pin | Use when |
-|-----|----------|
-| `^0.1.0` *(recommended)* | Разрешает patch/minor обновления в пределах `0.x` — для обычных проектов |
-| `0.1.0` *(exact)* | Для критичных или stabilizing проектов, где каждое изменение флага — осознанное решение |
-
-Добавление флагов, которые могут создать новые классы ошибок, всегда выходит **minor** релизом и описывается в release notes.
-
-## Roadmap
-
-- `noUncheckedIndexedAccess: true` — отложен (большой migration cost в consumer-коде).
-- `exactOptionalPropertyTypes: true` — отложен (тонкая семантика, TS team сами не рекомендуют как default).
-- Дополнительные пресеты `./react`, `./node` — поверх общей базы `./base`.
-
 ## License
 
 MIT © [Konstantin Kulebaev](mailto:konstantinkulebaev@gmail.com)
