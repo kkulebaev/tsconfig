@@ -41,7 +41,7 @@ pnpm add -D @kkulebaev/tsconfig typescript
 
 ## Usage
 
-Замени корневой `tsconfig.json` проекта на:
+Корневой `tsconfig.json` проекта заменяется на:
 
 ```json
 {
@@ -56,7 +56,7 @@ pnpm add -D @kkulebaev/tsconfig typescript
 }
 ```
 
-Оставь только project-specific поля (`paths`, `baseUrl`, `types`, `include`, `exclude`). Любые флаги, которые уже задаются пресетом, нужно удалить.
+В локальном `tsconfig.json` остаются только project-specific поля (`paths`, `baseUrl`, `types`, `include`, `exclude`). Все флаги, уже заданные пресетом, удаляются.
 
 ## Included flags
 
@@ -91,7 +91,7 @@ pnpm add -D @kkulebaev/tsconfig typescript
 - **Vue 3 + Vite + vue-tsc**: полностью поддержано, battle-tested.
 - **TypeScript**: требуется `>=5.0` (`peerDependency`) — `exports`-based `extends` resolution и массивный `extends` появились в TS 5.
 - **Runtime**: `target: ES2023` требует Chrome 110+, Safari 16.4+, Node 20+. Vite может занижать через `build.target` в `vite.config.ts`.
-- **Проекты, эмитящие через `tsc`**: совместимость не гарантируется — потребуется явный override `noEmit: false`. Если эмит делает `tsc`, пересмотри каждый флаг.
+- **Проекты, эмитящие через `tsc`**: совместимость не гарантируется — требуется явный override `noEmit: false` и пересмотр каждого флага.
 
 ## License
 
